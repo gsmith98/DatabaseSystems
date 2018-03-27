@@ -1,0 +1,772 @@
+Trying:
+    from Catalog.Identifiers import FileId, PageId, TupleId
+Expecting nothing
+ok
+Trying:
+    from Catalog.Schema      import DBSchema
+Expecting nothing
+ok
+Trying:
+    schema = DBSchema('employee', [('id', 'int'), ('age', 'int')])
+Expecting nothing
+ok
+Trying:
+    pId    = PageId(FileId(1), 100)
+Expecting nothing
+ok
+Trying:
+    p      = Page(pageId=pId, buffer=bytes(4096), schema=schema)
+Expecting nothing
+ok
+Trying:
+    len(p.pack())
+Expecting:
+    4096
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 243, in __main__.Page
+Failed example:
+    len(p.pack())
+Expected:
+    4096
+Got:
+    4
+Trying:
+    p2 = Page.unpack(pId, p.pack())
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 245, in __main__.Page
+Failed example:
+    p2 = Page.unpack(pId, p.pack())
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[6]>", line 1, in <module>
+        p2 = Page.unpack(pId, p.pack())
+      File "./Storage/Page.py", line 420, in unpack
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    p.pageId == p2.pageId
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 246, in __main__.Page
+Failed example:
+    p.pageId == p2.pageId
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[7]>", line 1, in <module>
+        p.pageId == p2.pageId
+    NameError: name 'p2' is not defined
+Trying:
+    p.header == p2.header
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 248, in __main__.Page
+Failed example:
+    p.header == p2.header
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[8]>", line 1, in <module>
+        p.header == p2.header
+    NameError: name 'p2' is not defined
+Trying:
+    e1 = schema.instantiate(1,25)
+Expecting nothing
+ok
+Trying:
+    tId = p.insertTuple(schema.pack(e1))
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 253, in __main__.Page
+Failed example:
+    tId = p.insertTuple(schema.pack(e1))
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[10]>", line 1, in <module>
+        tId = p.insertTuple(schema.pack(e1))
+      File "./Storage/Page.py", line 395, in insertTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    e2 = schema.unpack(p.getTuple(tId))
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 256, in __main__.Page
+Failed example:
+    e2 = schema.unpack(p.getTuple(tId))
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[11]>", line 1, in <module>
+        e2 = schema.unpack(p.getTuple(tId))
+    NameError: name 'tId' is not defined
+Trying:
+    e2
+Expecting:
+    employee(id=1, age=25)
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 257, in __main__.Page
+Failed example:
+    e2
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[12]>", line 1, in <module>
+        e2
+    NameError: name 'e2' is not defined
+Trying:
+    e1 = schema.instantiate(1,28)
+Expecting nothing
+ok
+Trying:
+    p.putTuple(tId, schema.pack(e1))
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 262, in __main__.Page
+Failed example:
+    p.putTuple(tId, schema.pack(e1))
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[14]>", line 1, in <module>
+        p.putTuple(tId, schema.pack(e1))
+    NameError: name 'tId' is not defined
+Trying:
+    e3 = schema.unpack(p.getTuple(tId))
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 265, in __main__.Page
+Failed example:
+    e3 = schema.unpack(p.getTuple(tId))
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[15]>", line 1, in <module>
+        e3 = schema.unpack(p.getTuple(tId))
+    NameError: name 'tId' is not defined
+Trying:
+    e3
+Expecting:
+    employee(id=1, age=28)
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 266, in __main__.Page
+Failed example:
+    e3
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[16]>", line 1, in <module>
+        e3
+    NameError: name 'e3' is not defined
+Trying:
+    e1 == e3
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 270, in __main__.Page
+Failed example:
+    e1 == e3
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[17]>", line 1, in <module>
+        e1 == e3
+    NameError: name 'e3' is not defined
+Trying:
+    e2 == e3
+Expecting:
+    False
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 273, in __main__.Page
+Failed example:
+    e2 == e3
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[18]>", line 1, in <module>
+        e2 == e3
+    NameError: name 'e2' is not defined
+Trying:
+    p.header.numTuples() == 1
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 277, in __main__.Page
+Failed example:
+    p.header.numTuples() == 1
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[19]>", line 1, in <module>
+        p.header.numTuples() == 1
+      File "./Storage/Page.py", line 166, in numTuples
+        return int(self.usedSpace() / self.tupleSize)
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    for tup in [schema.pack(schema.instantiate(i, 2*i+20)) for i in range(10)]:
+       _ = p.insertTuple(tup)
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 281, in __main__.Page
+Failed example:
+    for tup in [schema.pack(schema.instantiate(i, 2*i+20)) for i in range(10)]:
+       _ = p.insertTuple(tup)
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[20]>", line 2, in <module>
+        _ = p.insertTuple(tup)
+      File "./Storage/Page.py", line 395, in insertTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    p.header.numTuples()
+Expecting:
+    11
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 286, in __main__.Page
+Failed example:
+    p.header.numTuples()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[21]>", line 1, in <module>
+        p.header.numTuples()
+      File "./Storage/Page.py", line 166, in numTuples
+        return int(self.usedSpace() / self.tupleSize)
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    [schema.unpack(tup).age for tup in p]
+Expecting:
+    [28, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38]
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 290, in __main__.Page
+Failed example:
+    [schema.unpack(tup).age for tup in p]
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[22]>", line 1, in <module>
+        [schema.unpack(tup).age for tup in p]
+      File "<doctest __main__.Page[22]>", line 1, in <listcomp>
+        [schema.unpack(tup).age for tup in p]
+      File "./Storage/Page.py", line 369, in __next__
+        t = self.getTuple(TupleId(self.pageId, self.iterTupleIdx))
+      File "./Storage/Page.py", line 387, in getTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    tId = TupleId(p.pageId, 0)
+Expecting nothing
+ok
+Trying:
+    sizeBeforeClear = p.header.usedSpace()
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 295, in __main__.Page
+Failed example:
+    sizeBeforeClear = p.header.usedSpace()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[24]>", line 1, in <module>
+        sizeBeforeClear = p.header.usedSpace()
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    p.clearTuple(tId)
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 297, in __main__.Page
+Failed example:
+    p.clearTuple(tId)
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[25]>", line 1, in <module>
+        p.clearTuple(tId)
+      File "./Storage/Page.py", line 399, in clearTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    schema.unpack(p.getTuple(tId))
+Expecting:
+    employee(id=0, age=0)
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 299, in __main__.Page
+Failed example:
+    schema.unpack(p.getTuple(tId))
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[26]>", line 1, in <module>
+        schema.unpack(p.getTuple(tId))
+      File "./Storage/Page.py", line 387, in getTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    p.header.usedSpace() == sizeBeforeClear
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 302, in __main__.Page
+Failed example:
+    p.header.usedSpace() == sizeBeforeClear
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[27]>", line 1, in <module>
+        p.header.usedSpace() == sizeBeforeClear
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    [schema.unpack(tup).age for tup in p]
+Expecting:
+    [0, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38]
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 306, in __main__.Page
+Failed example:
+    [schema.unpack(tup).age for tup in p]
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[28]>", line 1, in <module>
+        [schema.unpack(tup).age for tup in p]
+      File "<doctest __main__.Page[28]>", line 1, in <listcomp>
+        [schema.unpack(tup).age for tup in p]
+      File "./Storage/Page.py", line 369, in __next__
+        t = self.getTuple(TupleId(self.pageId, self.iterTupleIdx))
+      File "./Storage/Page.py", line 387, in getTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    sizeBeforeRemove = p.header.usedSpace()
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 310, in __main__.Page
+Failed example:
+    sizeBeforeRemove = p.header.usedSpace()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[29]>", line 1, in <module>
+        sizeBeforeRemove = p.header.usedSpace()
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    p.deleteTuple(tId)
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 311, in __main__.Page
+Failed example:
+    p.deleteTuple(tId)
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[30]>", line 1, in <module>
+        p.deleteTuple(tId)
+      File "./Storage/Page.py", line 403, in deleteTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    [schema.unpack(tup).age for tup in p]
+Expecting:
+    [20, 22, 24, 26, 28, 30, 32, 34, 36, 38]
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 313, in __main__.Page
+Failed example:
+    [schema.unpack(tup).age for tup in p]
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[31]>", line 1, in <module>
+        [schema.unpack(tup).age for tup in p]
+      File "<doctest __main__.Page[31]>", line 1, in <listcomp>
+        [schema.unpack(tup).age for tup in p]
+      File "./Storage/Page.py", line 369, in __next__
+        t = self.getTuple(TupleId(self.pageId, self.iterTupleIdx))
+      File "./Storage/Page.py", line 387, in getTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    p.header.usedSpace() == (sizeBeforeRemove - p.header.tupleSize)
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 317, in __main__.Page
+Failed example:
+    p.header.usedSpace() == (sizeBeforeRemove - p.header.tupleSize)
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page[32]>", line 1, in <module>
+        p.header.usedSpace() == (sizeBeforeRemove - p.header.tupleSize)
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    import io
+Expecting nothing
+ok
+Trying:
+    buffer = io.BytesIO(bytes(4096))
+Expecting nothing
+ok
+Trying:
+    ph     = PageHeader(buffer=buffer.getbuffer(), tupleSize=16)
+Expecting nothing
+ok
+Trying:
+    ph2    = PageHeader.unpack(buffer.getbuffer())
+Expecting nothing
+ok
+Trying:
+    ph == ph2
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 45, in __main__.Page.headerClass
+Failed example:
+    ph == ph2
+Expected:
+    True
+Got:
+    False
+Trying:
+    buffer2 = io.BytesIO(bytes(2048))
+Expecting nothing
+ok
+Trying:
+    ph3     = PageHeader(buffer=buffer2.getbuffer(), tupleSize=16)
+Expecting nothing
+ok
+Trying:
+    ph == ph3
+Expecting:
+    False
+ok
+Trying:
+    ph.isDirty()
+Expecting:
+    False
+ok
+Trying:
+    ph.setDirty(True)
+Expecting nothing
+ok
+Trying:
+    ph.isDirty()
+Expecting:
+    True
+ok
+Trying:
+    ph.setDirty(False)
+Expecting nothing
+ok
+Trying:
+    ph.isDirty()
+Expecting:
+    False
+ok
+Trying:
+    ph.hasFreeTuple()
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 64, in __main__.Page.headerClass
+Failed example:
+    ph.hasFreeTuple()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[13]>", line 1, in <module>
+        ph.hasFreeTuple()
+      File "./Storage/Page.py", line 178, in hasFreeTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.nextFreeTuple() == ph.headerSize()
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 68, in __main__.Page.headerClass
+Failed example:
+    ph.nextFreeTuple() == ph.headerSize()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[14]>", line 1, in <module>
+        ph.nextFreeTuple() == ph.headerSize()
+      File "./Storage/Page.py", line 184, in nextFreeTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.numTuples()
+Expecting:
+    1
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 71, in __main__.Page.headerClass
+Failed example:
+    ph.numTuples()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[15]>", line 1, in <module>
+        ph.numTuples()
+      File "./Storage/Page.py", line 166, in numTuples
+        return int(self.usedSpace() / self.tupleSize)
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    tuplesToTest = 10
+Expecting nothing
+ok
+Trying:
+    [ph.nextFreeTuple() for i in range(0,tuplesToTest)]
+Expecting:
+    [24, 40, 56, 72, 88, 104, 120, 136, 152, 168]
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 75, in __main__.Page.headerClass
+Failed example:
+    [ph.nextFreeTuple() for i in range(0,tuplesToTest)]
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[17]>", line 1, in <module>
+        [ph.nextFreeTuple() for i in range(0,tuplesToTest)]
+      File "<doctest __main__.Page.headerClass[17]>", line 1, in <listcomp>
+        [ph.nextFreeTuple() for i in range(0,tuplesToTest)]
+      File "./Storage/Page.py", line 184, in nextFreeTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.numTuples() == tuplesToTest+1
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 78, in __main__.Page.headerClass
+Failed example:
+    ph.numTuples() == tuplesToTest+1
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[18]>", line 1, in <module>
+        ph.numTuples() == tuplesToTest+1
+      File "./Storage/Page.py", line 166, in numTuples
+        return int(self.usedSpace() / self.tupleSize)
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.hasFreeTuple()
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 81, in __main__.Page.headerClass
+Failed example:
+    ph.hasFreeTuple()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[19]>", line 1, in <module>
+        ph.hasFreeTuple()
+      File "./Storage/Page.py", line 178, in hasFreeTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.usedSpace() == (tuplesToTest+1)*ph.tupleSize
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 85, in __main__.Page.headerClass
+Failed example:
+    ph.usedSpace() == (tuplesToTest+1)*ph.tupleSize
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[20]>", line 1, in <module>
+        ph.usedSpace() == (tuplesToTest+1)*ph.tupleSize
+      File "./Storage/Page.py", line 174, in usedSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.freeSpace() == 4096 - (ph.headerSize() + ((tuplesToTest+1) * ph.tupleSize))
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 88, in __main__.Page.headerClass
+Failed example:
+    ph.freeSpace() == 4096 - (ph.headerSize() + ((tuplesToTest+1) * ph.tupleSize))
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[21]>", line 1, in <module>
+        ph.freeSpace() == 4096 - (ph.headerSize() + ((tuplesToTest+1) * ph.tupleSize))
+      File "./Storage/Page.py", line 170, in freeSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    remainingTuples = int(ph.freeSpace() / ph.tupleSize)
+Expecting nothing
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 91, in __main__.Page.headerClass
+Failed example:
+    remainingTuples = int(ph.freeSpace() / ph.tupleSize)
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[22]>", line 1, in <module>
+        remainingTuples = int(ph.freeSpace() / ph.tupleSize)
+      File "./Storage/Page.py", line 170, in freeSpace
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    [ph.nextFreeTuple() for i in range(0, remainingTuples)] # doctest:+ELLIPSIS
+Expecting:
+    [184, 200, ..., 4072]
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 94, in __main__.Page.headerClass
+Failed example:
+    [ph.nextFreeTuple() for i in range(0, remainingTuples)] # doctest:+ELLIPSIS
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[23]>", line 1, in <module>
+        [ph.nextFreeTuple() for i in range(0, remainingTuples)] # doctest:+ELLIPSIS
+    NameError: name 'remainingTuples' is not defined
+Trying:
+    ph.hasFreeTuple()
+Expecting:
+    False
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 97, in __main__.Page.headerClass
+Failed example:
+    ph.hasFreeTuple()
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[24]>", line 1, in <module>
+        ph.hasFreeTuple()
+      File "./Storage/Page.py", line 178, in hasFreeTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.nextFreeTuple() == None
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 101, in __main__.Page.headerClass
+Failed example:
+    ph.nextFreeTuple() == None
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[25]>", line 1, in <module>
+        ph.nextFreeTuple() == None
+      File "./Storage/Page.py", line 184, in nextFreeTuple
+        raise NotImplementedError
+    NotImplementedError
+Trying:
+    ph.freeSpace() < ph.tupleSize
+Expecting:
+    True
+**********************************************************************
+File "/Users/elanastroud/Desktop/hw1/dbsys-hw1/Storage/Page.py", line 104, in __main__.Page.headerClass
+Failed example:
+    ph.freeSpace() < ph.tupleSize
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1313, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Page.headerClass[26]>", line 1, in <module>
+        ph.freeSpace() < ph.tupleSize
+      File "./Storage/Page.py", line 170, in freeSpace
+        raise NotImplementedError
+    NotImplementedError
+30 items had no tests:
+    __main__
+    __main__.Page.__init__
+    __main__.Page.__iter__
+    __main__.Page.__next__
+    __main__.Page.clearTuple
+    __main__.Page.deleteTuple
+    __main__.Page.getTuple
+    __main__.Page.headerClass.__eq__
+    __main__.Page.headerClass.__hash__
+    __main__.Page.headerClass.__init__
+    __main__.Page.headerClass.flag
+    __main__.Page.headerClass.freeSpace
+    __main__.Page.headerClass.hasFreeTuple
+    __main__.Page.headerClass.headerSize
+    __main__.Page.headerClass.isDirty
+    __main__.Page.headerClass.nextFreeTuple
+    __main__.Page.headerClass.nextTupleRange
+    __main__.Page.headerClass.numTuples
+    __main__.Page.headerClass.pack
+    __main__.Page.headerClass.setDirty
+    __main__.Page.headerClass.setFlag
+    __main__.Page.headerClass.unpack
+    __main__.Page.headerClass.usedSpace
+    __main__.Page.initializeHeader
+    __main__.Page.insertTuple
+    __main__.Page.isDirty
+    __main__.Page.pack
+    __main__.Page.putTuple
+    __main__.Page.setDirty
+    __main__.Page.unpack
+**********************************************************************
+2 items had failures:
+  25 of  33 in __main__.Page
+  14 of  27 in __main__.Page.headerClass
+60 tests in 32 items.
+21 passed and 39 failed.
+***Test Failed*** 39 failures.
